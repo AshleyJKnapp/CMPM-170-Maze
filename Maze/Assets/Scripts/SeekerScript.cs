@@ -9,6 +9,8 @@ public class SeekerScript : MonoBehaviour
     Vector3 pos = new Vector3(Screen.width/4, Screen.height/2, 0);
     public GameObject clickTarget;
 
+    public KeyCode targetKey = KeyCode.Space;
+
     void Update()
     {
         Ray ray = playerCamera.ScreenPointToRay(pos);
@@ -16,7 +18,7 @@ public class SeekerScript : MonoBehaviour
 
         RaycastHit hit;
 		if (Physics.Raycast(ray, out hit, maxRaycastDistance)){
-            if (Input.GetMouseButtonDown(0) && hit.collider.gameObject.tag == "Player") {
+            if (Input.GetKey(targetKey) && hit.collider.gameObject == clickTarget) {
                 Debug.Log("Hiding player lost!");
             }
         }
