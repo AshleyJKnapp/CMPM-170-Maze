@@ -10,6 +10,7 @@ public class SeekerScript : MonoBehaviour
     public GameObject clickTarget;
 
     public KeyCode targetKey = KeyCode.Space;
+    public UIManagerScript uiScript;
 
     void Update()
     {
@@ -20,8 +21,13 @@ public class SeekerScript : MonoBehaviour
 		if (Physics.Raycast(ray, out hit, maxRaycastDistance)){
             if (Input.GetKey(targetKey) && hit.collider.gameObject == clickTarget) {
                 Debug.Log("Hiding player lost!");
+                WinGame();
             }
         }
+    }
+
+    void WinGame(){
+        uiScript.ChangeToWin();
     }
 
 }
