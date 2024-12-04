@@ -9,12 +9,15 @@ public class UIManagerScript : MonoBehaviour
 {
     [SerializeField] Canvas GameHUD;
     [SerializeField] Canvas WinMenu;
+    [SerializeField] Canvas WinHider;
 
     [SerializeField] Button RestartBtn;
     
     enum MenuState {
         HUD,
         Win,
+
+        Hide,
     }
 
     MenuState CurrentMenu;
@@ -30,6 +33,7 @@ public class UIManagerScript : MonoBehaviour
         {
             GameHUD.enabled = true;
             WinMenu.enabled = false;
+            WinHider.enabled = false;
 
             RestartBtn.gameObject.SetActive(false);
 
@@ -37,6 +41,15 @@ public class UIManagerScript : MonoBehaviour
         {
             GameHUD.enabled = false;
             WinMenu.enabled = true;
+            WinHider.enabled = false;
+
+            RestartBtn.gameObject.SetActive(true);
+
+        } else if (CurrentMenu == MenuState.Hide)
+        {
+            GameHUD.enabled = false;
+            WinMenu.enabled = false;
+            WinHider.enabled = true;
 
             RestartBtn.gameObject.SetActive(true);
 
@@ -53,6 +66,11 @@ public class UIManagerScript : MonoBehaviour
     public void ChangeToWin()
     {
         CurrentMenu = MenuState.Win;
+        MenuCheck();
+    }
+    public void ChangeToWinHide()
+    {
+        CurrentMenu = MenuState.Hide;
         MenuCheck();
     }
 
