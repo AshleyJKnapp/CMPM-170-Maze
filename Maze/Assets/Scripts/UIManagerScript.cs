@@ -73,6 +73,9 @@ public class UIManagerScript : MonoBehaviour
         CurrentMenu = MenuState.Hide;
         MenuCheck();
     }
+    public bool checkHunterWin(){//Check if the hunter win menu enabled, to be used with counter script
+        return WinMenu.enabled;
+    }
 
     // public void StartGame()
     // {

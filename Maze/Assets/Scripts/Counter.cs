@@ -15,7 +15,9 @@ public class Counter : MonoBehaviour
 
     }
     void Update(){
-        timer -= Time.deltaTime;
+        if(!uiScript.checkHunterWin()){
+            timer -= Time.deltaTime;
+        }
         double seconds = timer % 60;
         healthLabel.text = seconds.ToString();
         if(timer <= 0){
