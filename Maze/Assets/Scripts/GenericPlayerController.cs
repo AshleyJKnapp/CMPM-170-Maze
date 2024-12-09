@@ -8,16 +8,22 @@ public class GenericPlayerController : MonoBehaviour
     [SerializeField] private float moveSpeed = 10f;
     [SerializeField] private float turnSpeed = 200f;
 
+    public GameObject[] spawnPoints;
+
     public KeyCode leftKey = KeyCode.A;
     public KeyCode rightKey = KeyCode.D;
     public KeyCode forwardKey = KeyCode.W;
     public KeyCode backKey = KeyCode.S;
 
-private Rigidbody rb;
+    private Rigidbody rb;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        
+        int randomIndex = Random.Range(0, spawnPoints.Length);
+        transform.position = spawnPoints[randomIndex].transform.position;
+        Debug.Log(this + " spawned at spawn point: " + (randomIndex + 1));
     }
 
     // Update is called once per frame
